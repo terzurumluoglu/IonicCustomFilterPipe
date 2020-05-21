@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Filter Using Custom Pipe</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-searchbar [(ngModel)]="search" animated></ion-searchbar>
+    <ion-item *ngFor="let a of allLanguages | filter : search">
+      <ion-label text-wrap>
+        <span color="primary">
+          <h2 [innerHTML]="a?.languageName | titlecase"></h2>
+        </span>
+        <span color="secondary">
+          <p [innerHTML]="a?.countryName"></p>
+        </span>
+      </ion-label>
+    </ion-item>
+  <ion-card *ngIf="(allLanguages | filter : search).length == 0 && allLanguages.length != 0">
+  <ion-card-header>
+    <ion-card-title>No Record</ion-card-title>
+  </ion-card-header>
+</ion-card>
+  </ion-list>
+</ion-content>
+
